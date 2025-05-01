@@ -61,7 +61,7 @@ st.header("Solución")
 @st.cache_data
 def load_data():
     try:
-        data = pd.read_csv("static\datasets\estudiantes_colombia.csv")
+        data = pd.read_csv("estudiantes_colombia.csv")
         
         expected_columns = ['nombre', 'edad', 'promedio']
         for col in expected_columns:
