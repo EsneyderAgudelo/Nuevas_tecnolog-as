@@ -159,15 +159,15 @@ st.dataframe(df_json)
 # --------------------------------------------------
 # 8. DataFrame desde URL (Datos públicos)
 # --------------------------------------------------
-st.subheader("8. Desde URL - Datos públicos de Colombia")
+st.subheader("8. Desde URL - Datos públicos")
 st.markdown("Leemos datos directamente desde una URL.")
 
+url_csv = "https://raw.githubusercontent.com/plotly/datasets/master/iris.csv"
 try:
-    url = "https://www.datos.gov.co/api/views/gt2j-8ykr/rows.csv?accessType=DOWNLOAD"
-    df_url = pd.read_csv(url)
-    st.dataframe(df_url.head(3))  # Mostrar solo las primeras filas
+    df_url = pd.read_csv(url_csv)
+    st.dataframe(df_url.head()) # Mostramos solo las primeras filas
 except Exception as e:
-    st.error(f"No se pudo cargar los datos desde la URL: {e}")
+    st.error(f"Error al leer el CSV desde la URL: {e}")
 
 # --------------------------------------------------
 # 9. DataFrame desde SQLite (Datos educativos)
