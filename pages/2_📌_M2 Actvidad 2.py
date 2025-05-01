@@ -65,8 +65,6 @@ def load_data():
     try:
         ruta_relativa = "static/datasets/estudiantes_colombia.csv"
 
-        st.info(f"ℹ️ Intentando abrir (relativa): {ruta_relativa}")
-
         data = pd.read_csv(ruta_relativa)
         return data
 
