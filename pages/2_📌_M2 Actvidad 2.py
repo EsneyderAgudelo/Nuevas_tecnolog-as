@@ -1,15 +1,17 @@
 import streamlit as st
 import pandas as pd
 from io import StringIO
+import os
+
 
 # Configuración de la página
 st.set_page_config(
-    page_title="Estudiantes Colombia",
+    page_title="Momento 2 - Actividad 2",
     page_icon="📊",
     layout="wide"
 )
 
-st.title("Análisis de Datos de Estudiantes Colombianos")
+st.title("Momento 2 - Actividad 2")
 
 st.header("Descripción de la actividad")
 st.markdown("""
@@ -61,18 +63,16 @@ st.header("Solución")
 @st.cache_data
 def load_data():
     try:
-        data = pd.read_csv("estudiantes_colombia.csv")
-        
-        expected_columns = ['nombre', 'edad', 'promedio']
-        for col in expected_columns:
-            if col not in data.columns:
-                st.warning(f"Advertencia: La columna '{col}' no se encontró en el dataset")
-        
+        ruta_relativa = "static/datasets/estudiantes_colombia.csv"
+
+        st.info(f"ℹ️ Intentando abrir (relativa): {ruta_relativa}")
+
+        data = pd.read_csv(ruta_relativa)
         return data
-    
-    except FileNotFoundError:
-        st.error("❌ Error: No se encontró el archivo 'estudiantes_colombia.csv'")
-        st.info("ℹ️ Por favor asegúrate de que el archivo esté en el mismo directorio que esta aplicación")
+
+    except FileNotFoundError as e:
+        st.error(f"❌ Error: No se encontró el archivo '{ruta_relativa}'")
+        st.info("ℹ️ Por favor asegúrate de que el archivo esté en la ruta: {ruta_relativa} dentro del directorio de trabajo.")
         return None
     except Exception as e:
         st.error(f"❌ Error inesperado al cargar los datos: {str(e)}")
